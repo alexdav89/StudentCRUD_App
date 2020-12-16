@@ -1,0 +1,272 @@
+<html lang="en" style="--scrollbar-width:16px; --moz-scrollbar-thin:16px; font-size: 0.925rem;">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+  <base href="/">
+
+  <title>Student CRUD</title>
+
+
+
+  <!-- include vendor stylesheets used in "Dashboard" page. see "application/views/default/pages/partials/dashboard/@vendor-stylesheets.hbs" -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/ace-font.min.css" />
+  <link rel="stylesheet" href="/assets/css/ace-themes.min.css" />
+  <link rel="stylesheet" href="/assets/css/date-range-picker.css" />
+  <link rel="stylesheet" href="/assets/css/tiny-date-picker.css" />
+  <link rel="stylesheet" href="/assets/css/ace.min.css" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="manifest" href="/assets/manifest.webmanifest">
+  <meta name="theme-color" content="#1976d2">
+
+
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+
+  <!-- "Dashboard" page styles specific to this page for demo purposes -->
+  <style>
+    .flex-equal-sm>* {
+      flex: 0 1 1% !important;
+    }
+
+    @media (hover: hover) {
+      #id-ace-settings-modal:not(.show) .aside-header>.btn:hover>.fa {
+        animation: 0.6s fa-spin ease-in-out;
+      }
+    }
+
+    @media screen and (prefers-reduced-motion: reduce) {
+      #id-ace-settings-modal:not(.show) .aside-header>.btn:hover>.fa {
+        animation: none;
+      }
+    }
+
+  </style>
+  <style type="text/css">
+    /* Chart.js */
+    /*
+* DOM element rendering detection
+* https://davidwalsh.name/detect-node-insertion
+*/
+    @keyframes chartjs-render-animation {
+      from {
+        opacity: 0.99;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .chartjs-render-monitor {
+      animation: chartjs-render-animation 0.001s;
+    }
+
+    /*
+* DOM element resizing detection
+* https://github.com/marcj/css-element-queries
+*/
+    .chartjs-size-monitor,
+    .chartjs-size-monitor-expand,
+    .chartjs-size-monitor-shrink {
+      position: absolute;
+      direction: ltr;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      pointer-events: none;
+      visibility: hidden;
+      z-index: -1;
+    }
+
+    .chartjs-size-monitor-expand>div {
+      position: absolute;
+      width: 1000000px;
+      height: 1000000px;
+      left: 0;
+      top: 0;
+    }
+
+    .chartjs-size-monitor-shrink>div {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      left: 0;
+      top: 0;
+    }
+
+  </style>
+  <link rel="stylesheet" type="text/css" href="/assets/css/ace-themes.css">
+</head>
+
+<body class="" style="">
+  <div class="body-container container container-plus">
+    <nav class="navbar navbar-expand-lg navbar-fixed navbar-steelblue">
+      <div class="navbar-inner">
+
+        <div class="justify-content-xl-between pt-2">
+
+
+
+          <a class="navbar-brand text-white" href="/">
+            <i class="fa fa-leaf"></i>
+            <span>Student CRUD</span>
+          </a><!-- /.navbar-brand -->
+
+
+
+        </div><!-- /.navbar-intro -->
+
+
+        <div class="navbar-content">
+
+
+        </div><!-- .navbar-content -->
+
+        <div class="navbar-menu collapse navbar-collapse navbar-backdrop" id="navbarMenu">
+
+          <div class="navbar-nav">
+            <ul class="nav">
+
+              <li class="nav-item">
+                <a class="nav-link" href="/" role="button">
+                  <i class="fa fa-list-alt mr-2 d-lg-none"></i>
+                  Home
+                </a>
+
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/students" role="button">
+                  <i class="fa fa-list-alt mr-2 d-lg-none"></i>
+                  Students
+                </a>
+
+              </li>
+              <li class="nav-item dropdown dropdown-mega">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">
+                  <i class="fa fa-list-alt mr-2 d-lg-none"></i>
+                  Contact
+                </a>
+
+              </li>
+
+
+
+            </ul><!-- /.navbar-nav menu -->
+          </div><!-- /.navbar-nav -->
+
+        </div><!-- /.navbar-menu.navbar-collapse -->
+
+      </div><!-- /.navbar-inner -->
+    </nav>
+    <div class="main-container">
+
+
+
+      <div role="main" class="main-content">
+
+
+        <div class="page-content container px-md-4">
+          <app-root></app-root>
+
+        </div><!-- /.page-content -->
+
+        <footer class="footer d-none d-sm-block">
+          <div class="footer-inner bgc-white-tp1">
+            <div class="pt-3 border-none border-t-3 brc-grey-l1 border-double">
+              <span class="text-primary-m2 font-bolder text-120">Student CRUD</span>
+              <span class="text-muted">© 2020</span>
+
+              <span class="mx-3 action-buttons">
+                <a href="#" class="text-blue2-m3 text-140"><i class="fa fa-twitter-square"></i></a>
+                <a href="#" class="text-blue-d1 text-140"><i class="fa fa-facebook"></i></a>
+              </span>
+            </div>
+          </div><!-- .footer-inner -->
+
+          <div class="footer-tools">
+            <a id="btn-scroll-up" href="#" class="btn-scroll-up btn btn-dark btn-smd mb-2 mr-2 scroll-btn-visible">
+              <i class="fa fa-angle-double-up mx-1"></i>
+            </a>
+          </div>
+        </footer>
+
+
+
+        <!-- footer toolbox for mobile view -->
+        <footer class="d-sm-none footer footer-sm footer-fixed">
+          <div class="footer-inner">
+            <div
+              class="btn-group d-flex h-100 mx-2 border-x-1 border-t-2 brc-primary-m3 bgc-default-l4 radius-t-1 shadow">
+              <button class="btn btn-outline-primary btn-h-lighter-primary btn-a-lighter-primary border-0">
+                <i class="fas fa-sliders-h text-blue-m1 text-120"></i>
+              </button>
+
+              <button class="btn btn-outline-purple btn-h-lighter-purple btn-a-lighter-purple border-0">
+                <i class="fa fa-plus-circle text-purple-m2 text-120"></i>
+              </button>
+
+              <button class="btn btn-outline-warning btn-h-lighter-warning btn-a-lighter-warning border-0"
+                data-toggle="collapse" data-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false"
+                aria-label="Toggle navbar search">
+                <i class="fa fa-search text-warning text-120"></i>
+              </button>
+
+              <button class="btn btn-outline-brown btn-h-lighter-brown btn-a-lighter-brown border-0 mr-0">
+                <i class="fa fa-bell text-brown-m1 text-120"></i>
+              </button>
+            </div>
+          </div>
+        </footer>
+      </div><!-- /main -->
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+  </div>
+  <div class="scroll-btn-observe">
+
+  </div><!-- /.body-container -->
+
+  <!-- include Ace script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"
+    integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"
+    integrity="sha256-oKpAiD7qu3bXrWRVxnXLV1h7FlNV+p5YJBIr8LOCFYw=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.9/interact.min.js"
+    integrity="sha256-0ZwHlKPSevcAjy4YKcjEOlxHRnwXHBVNDUZ/yMuewiw=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"
+    integrity="sha256-sfG8c9ILUB8EXQ5muswfjZsKICbRIJUG/kBogvvV5sY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+  <script src="/assets/js/date-range-picker.js"></script>
+  <script src="/assets/js/waves.js"></script>
+  <script src="/assets/js/ace.min.js"></script>
+  <script>
+    // var TinyDatePicker = DateRangePicker.TinyDatePicker;
+    // var dp = TinyDatePicker('.date-picker', {
+    //   mode: 'dp-below',
+    // }).on('statechange', function (ev) {
+
+    // });
+
+  </script>
+</body>
+
+</html>

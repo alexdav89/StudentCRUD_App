@@ -1,0 +1,99 @@
+<h3 *ngIf="!studentId">ახალი სტუდენტი</h3>
+<h3 *ngIf="studentId">განვაახლოთ სტუდენტი</h3>
+<form [formGroup]="studentForm" *ngIf="student || !studentId">
+  <div class="form-group row">
+    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+      <label for="id" class="mb-0">ID</label>
+    </div>
+
+    <div class="col-sm-9">
+      <input type="text" class="form-control col-sm-8 col-md-6" id="id" name="id" formControlName="id"
+        (blur)="validateStudentId()">
+      <span class="form-text d-inline-block text-danger-d2 text-600 text-95 ml-sm-2"
+        *ngIf="studentForm.controls['id'].touched && studentForm.controls['id'].invalid">  Id სავალდებულოა </span>
+      <span class="form-text d-inline-block text-danger-d2 text-600 text-95 ml-sm-2"
+        *ngIf="studentIdIsUnique === false"> სტუდენტი ამ IDით უკვე არის
+      </span>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+      <label for="firstName" class="mb-0">სახელი</label>
+    </div>
+
+    <div class="col-sm-9">
+      <input type="text" class="form-control col-sm-8 col-md-6" id="firstName" name="firstName"
+        formControlName="firstName">
+      <span class="form-text d-inline-block text-danger-d2 text-600 text-95 ml-sm-2"
+        *ngIf="studentForm.controls['firstName'].touched && studentForm.controls['firstName'].invalid"> სახელი სავალდებულოა </span>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+      <label for="lastName" class="mb-0">გვარი</label>
+    </div>
+
+    <div class="col-sm-9">
+      <input type="text" class="form-control col-sm-8 col-md-6" id="lastName" name="lastName"
+        formControlName="lastName">
+      <span class="form-text d-inline-block text-danger-d2 text-600 text-95 ml-sm-2"
+        *ngIf="studentForm.controls['lastName'].touched && studentForm.controls['lastName'].invalid"> გვარი სავალდებულოა </span>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+      <label for="gender" class="mb-0">სქესი</label>
+    </div>
+
+    <div class="col-sm-9">
+      <select class="form-control col-sm-8 col-md-6" id="gender" name="gender" formControlName="gender">
+        <option value="Male">
+          მამრობითი
+        </option>
+        <option value="Female">
+          მდედრობითი
+        </option>
+      </select>
+      <span class="form-text d-inline-block text-danger-d2 text-600 text-95 ml-sm-2"
+        *ngIf="studentForm.controls['gender'].touched && studentForm.controls['gender'].invalid"> სქესი სავალდებულოა </span>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-3 col-form-label text-sm-right pr-0">
+      <label for="lastName" class="mb-0">დაბადების დღე</label>
+    </div>
+
+    <div class="col-sm-9">
+      <input type="date" class="form-control col-sm-8 col-md-6" id="birthDate" name="birthDate"
+        formControlName="birthDate" (change)="onDateChange()" />
+      <div class="form-text d-inline-block text-danger-d2 text-600 text-95 ml-sm-2"
+        *ngIf="studentForm.controls['birthDate'].touched && studentForm.controls['birthDate'].errors?.required"> დაბადები დღე სავალდებულოა</div>
+      <div class="form-text d-inline-block text-danger-d2 text-600 text-95 ml-sm-2" *ngIf="studentForm.controls['birthDate'].touched && studentForm.controls['birthDate'].dirty && dateIsValid ===
+        false"> ასაკი უნდა იყოს 16 ზე მეტი </div>
+    </div>
+  </div>
+  <div class="my-5 border-t-1 brc-grey-l1 bgc-grey-l3 py-3">
+    <div class="offset-md-3 col-md-9">
+
+      <a class="btn btn-danger" routerLink="/students">
+        Back
+      </a>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      <button class="btn btn-info" type="button" (click)="saveStudent()"
+        [disabled]="studentForm.invalid || studentIdIsUnique === false || dateIsValid === false">
+        <i class="fa fa-check mr-1"></i>
+        Submit
+      </button>
+
+      <button class="btn btn-secondary ml-3" type="reset">
+        <i class="fa fa-undo mr-1"></i>
+        Reset
+      </button>
+
+    </div>
+  </div>
+</form>
